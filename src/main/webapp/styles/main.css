@@ -1,0 +1,62 @@
+.modal-backdrop {
+  bottom: 0;
+  position: fixed;
+}
+
+.wehr-font{
+	font-size: 12px; 
+}
+
+.slide.ng-leave {
+	position: relative; 
+}
+
+.slide.ng-enter {
+	position: absolute; 
+}
+ 
+.slide.ng-enter, .slide.ng-leave {
+	-webkit-transition: -webkit-transform 0.3s ease-in, opacity 0.3s ease-in; 
+	-moz-transition: -moz-transform 0.3s ease-in, opacity 0.3s ease-in; 
+	-o-transition: -o-transform 0.3s ease-in, opacity 0.3s ease-in; 
+    transition: transform 0.3s ease-in, opacity 0.3s ease-in; 
+}
+
+.slide.ng-enter, .slide.ng-leave.ng-leave-active {
+	-webkit-transform: scaleX(0.0001); 
+    -o-transform: scaleX(0.0001); 
+    transform: scaleX(0.0001); 
+   	opacity: 0; 
+} 
+ 
+.slide, .slide.ng-enter.ng-enter-active {
+	-webkit-transform: scaleX(1);
+	-o-transform: scaleX(1); 
+    transform: scaleX(1);
+    opacity: 1; 
+}
+
+.grid{
+	width:99%;
+	height: auto;
+}
+
+.grid_paginatioin{
+	margin:10px 0;
+}
+
+
+.child-node {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-image: none;
+  border: 1px solid transparent;
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}

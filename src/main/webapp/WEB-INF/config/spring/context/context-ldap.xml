@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:ldap="http://www.springframework.org/schema/ldap"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/ldap
+		http://www.springframework.org/schema/ldap/spring-ldap-2.0.xsd">
+<!-- 
+	<bean id="ldapContextSource" class="org.springframework.security.ldap.DefaultSpringSecurityContextSource">
+		<constructor-arg value="${ldap.url}"/>
+		<property name="base" value="${ldap.base}"/>
+		<property name="userDn" value="${ldap.username}"/>
+		<property name="password" value="${ldap.password}"/>
+	</bean>
+	
+	<bean id="ldapAuthProvider" class="org.springframework.security.ldap.authentication.LdapAuthenticationProvider">
+		<constructor-arg>
+			<bean class="org.springframework.security.ldap.authentication.BindAuthenticator">
+				<constructor-arg ref="ldapContextSource"/>
+				<property name="userSearch" ref="ldapUserSearch"/>
+			</bean>
+		</constructor-arg>
+		<constructor-arg>
+			<bean class="org.springframework.security.ldap.authentication.UserDetailsServiceLdapAuthoritiesPopulator">
+				<constructor-arg ref="isdUserDetailsService"/>
+			</bean>
+		</constructor-arg>
+	</bean>
+	<bean id="ldapUserSearch" class="org.springframework.security.ldap.search.FilterBasedLdapUserSearch">
+		<constructor-arg index="0" value="${ldap.search.base}"/>
+		<constructor-arg index="1" value="${ldap.search.filter}"/>
+		<constructor-arg index="2" ref="ldapContextSource" />
+	</bean> 
+	<bean id="isdUserDetailsService" class="com.wemade.solution.admin.user.service.impl.IsdUserDetailsServiceImpl" />
+	
+	<ldap:ldap-template id="ldapTemplate" context-source-ref="ldapContextSource" />
+	
+ -->
+</beans>

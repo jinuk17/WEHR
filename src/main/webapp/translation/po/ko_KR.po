@@ -1,0 +1,21 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Language: ko_KR\n"
+"X-Generator: Poedit 1.7.4\n"
+
+#: src/main/webapp/views/login.html:22
+msgid "Login"
+msgstr "로그인"
+
+#: src/main/webapp/views/login.html:3
+msgid "LOGIN"
+msgstr "로그인"

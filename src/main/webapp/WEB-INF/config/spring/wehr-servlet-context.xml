@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+    
+	
+    <mvc:annotation-driven />
+    
+    <mvc:default-servlet-handler/>
+	
+	<context:component-scan base-package="com.wemade.solution.wehr.web.controller, com.wemade.solution.wehr.web.component" />
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8"/>
+	    <property name="maxUploadSize" value="-1"/>
+    </bean>
+    
+    <mvc:interceptors>
+    	<bean class="com.wemade.solution.wehr.web.framework.interceptor.RequestParamLoggingInterceptor"/>
+    </mvc:interceptors>
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+		<property name="order" value="2" />
+	</bean>
+	
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+    	<property name="order" value="1"/>
+    	<property name="mediaTypes">
+    		<map>
+    			<entry key="json" value="application/json" />
+    		</map>
+    	</property>
+    	<property name="defaultViews">
+    		<list>
+    			<bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+    				<property name="modelKey" value="model"/>
+					<property name="extractValueFromSingleKeyModel" value="true"/>
+					<property name="objectMapper">
+						<bean class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean" p:failOnEmptyBeans="false" p:indentOutput="true"/>
+					</property>
+    			</bean>
+    		</list>
+    	</property>
+    </bean>
+	
+</beans>

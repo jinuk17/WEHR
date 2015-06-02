@@ -1,0 +1,129 @@
+<div class="modal-header">
+	<h3 class="modal-title">New Employee Registration</h3>
+</div>
+
+<div class="modal-body">
+	<div class="row">
+	
+		<form role="form">
+			<div class="col-md-12">
+				<div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong></div>
+				
+				<div class="form-group">
+					<label for="InputName">Issue Date</label>
+                    <div class="input-group">
+                    	<input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                    	<span class="input-group-btn">
+                    		<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    	</span>
+					</div>
+                </div>
+                
+                <div class="form-group">
+					<label for="InputName">Code</label>
+                    <div class="input-group">
+                    	<input type="text" class="form-control input-sm" name="InputName" id="InputName" placeholder="Enter Code" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+					</div>
+                </div>
+                
+                <div class="form-group">
+					<label for="InputName">Name</label>
+                    <div class="input-group">
+                    	<input type="text" class="form-control input-sm" name="InputName" id="InputName" placeholder="Enter Name" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+					</div>
+                </div>
+                
+                <div class="form-group">
+					<label for="InputName">Company</label>
+                    <ui-select ng-model="company.selected"  theme="select2" name="InputName" id="InputName" style="width:100%;">
+						<ui-select-match placeholder="Select a company">{{$select.selected.name}}</ui-select-match>
+					    <ui-select-choices repeat="comp in companies | propsFilter: {code: $select.search, name: $select.search}">
+				        	[<span ng-bind-html="comp.code | highlight: $select.search"></span>]
+				        	<span ng-bind-html="comp.name | highlight: $select.search"></span>
+					    </ui-select-choices>
+					</ui-select>
+                </div>
+                
+                 <div class="form-group">
+					<label for="InputName">Department</label>
+                    <ui-select ng-model="company.selected"  theme="select2" name="InputName" id="InputName" style="width:100%;">
+						<ui-select-match placeholder="Select a company">{{$select.selected.name}}</ui-select-match>
+					    <ui-select-choices repeat="comp in companies | propsFilter: {code: $select.search, name: $select.search}">
+				        	[<span ng-bind-html="comp.code | highlight: $select.search"></span>]
+				        	<span ng-bind-html="comp.name | highlight: $select.search"></span>
+					    </ui-select-choices>
+					</ui-select>
+                </div>
+                
+                <div class="form-group">
+					<label for="InputName">Act</label>
+                    <div class="input-group">
+                    	<input type="text" class="form-control input-sm" name="InputName" id="InputName" placeholder="Enter Act" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+					</div>
+                </div>
+                
+                <div class="form-group">
+					<label for="InputName">Mail</label>
+                    <div class="input-group">
+                    	<input type="text" class="form-control input-sm" name="InputName" id="InputName" placeholder="Enter Act" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+					</div>
+                </div>
+                
+                <div class="form-group">
+					<label for="InputName">Tel</label>
+                    <div class="input-group">
+                    	<input type="text" class="form-control input-sm" name="InputName" id="InputName" placeholder="Enter Tel" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+					</div>
+                </div>
+                
+                <div class="form-group">
+					<label for="InputName">HP</label>
+                    <div class="input-group">
+                    	<input type="text" class="form-control input-sm" name="InputName" id="InputName" placeholder="Enter HP" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+					</div>
+                </div>
+                
+                <div class="form-group">
+					<label for="InputName">Grade</label>
+                    <div class="input-group">
+                    	<input type="text" class="form-control input-sm" name="InputName" id="InputName" placeholder="Enter Grade" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+					</div>
+                </div>
+                
+                <div class="form-group">
+					<label for="InputName">Duty</label>
+                    <ui-select ng-model="company.selected"  ng-disabled="false"  theme="select2" name="InputName" id="InputName" style="width:100%;">
+						<ui-select-match placeholder="Select a company">{{$select.selected.name}}</ui-select-match>
+					    <ui-select-choices repeat="comp in companies | propsFilter: {code: $select.search, name: $select.search}">
+				        	[<span ng-bind-html="comp.code | highlight: $select.search"></span>]
+				        	<span ng-bind-html="comp.name | highlight: $select.search"></span>
+					    </ui-select-choices>
+					</ui-select>
+                </div>
+				
+				<div class="form-group">
+					<label for="InputName">Type</label>
+                    <div class="input-group">
+                    	<input type="text" class="form-control input-sm" name="InputName" id="InputName" placeholder="Enter Type" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+					</div>
+                </div>
+			
+		</form>
+	
+	</div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+    <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+</div>
+
+

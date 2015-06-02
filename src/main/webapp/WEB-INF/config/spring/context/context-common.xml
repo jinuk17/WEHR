@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util-4.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+		
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>file:${wehr.conf}/jdbc.properties</value>
+				<value>file:${wehr.conf}/env.properties</value>
+				<value>file:${wehr.conf}/ldap.properties</value>
+			</list>
+		</property>
+	</bean>
+		
+    <bean id="localeResolver"
+        class="org.springframework.web.servlet.i18n.FixedLocaleResolver">
+        <property name="defaultLocale" value="${defaultLocale}"/>
+    </bean>
+    
+    <bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="useCodeAsDefaultMessage" value="true"/> 
+		<property name="CacheSeconds" value="86400"/>
+		<property name="basenames">
+			<list>
+				<value>/WEB-INF/messages/messages_common</value>
+				<value>classpath:/messages/messages</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="messageSourceAccessor" class="org.springframework.context.support.MessageSourceAccessor">
+		<constructor-arg ref="messageSource"/>
+	</bean>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="use_sql_comments">true</prop>
+			</props>
+		</property>
+		<property name="packagesToScan" value="com.wemade.solution.**.dto"/>
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<context:component-scan base-package="com.wemade.solution.wehr.web.service.impl,
+										com.wemade.solution.wehr.web.dao.impl,
+										com.wemade.solution.wehr.web.framework.**"/>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+</beans>

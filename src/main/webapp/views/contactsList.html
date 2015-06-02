@@ -1,0 +1,99 @@
+<div class="row wehr-font" >
+	<div class="col-md-2 col-md-offset-1">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<strong>Company</strong>
+				<div class="pull-right">
+					<div class="btn-group">
+						<a href="" class="btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span></a>
+						<ul class="dropdown-menu wehr-font" role="menu">
+						    <li><a href="#"><spna class="glyphicon glyphicon-plus"></spna> Add</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="panel-body">
+				<ui-select ng-model="company.selected"  theme="select2" style="width:100%;">
+					<ui-select-match placeholder="Select a company">{{$select.selected.name}}</ui-select-match>
+				    <ui-select-choices repeat="comp in companies | propsFilter: {code: $select.search, name: $select.search}">
+			        	[<span ng-bind-html="comp.code | highlight: $select.search"></span>]
+			        	<span ng-bind-html="comp.name | highlight: $select.search"></span>
+				    </ui-select-choices>
+				</ui-select>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<strong>Department</strong>
+				<div class="pull-right">
+					<div class="btn-group">
+						<a href="" class="btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span></a>
+						<ul class="dropdown-menu wehr-font" role="menu">
+						    <li><a href="#"><spna class="glyphicon glyphicon-plus"></spna> Add</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="panel-body" >
+			    <div 
+				    data-angular-treeview="true"
+					data-tree-id="deptTree"
+					data-tree-model="treedata"
+					data-node-id="id"
+					data-node-label="name"
+					data-node-children="children" >
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<strong>Department</strong>
+				<div class="pull-right">
+					<div class="btn-group">
+						<a href="" class="btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span></a>
+						<ul class="dropdown-menu wehr-font" role="menu">
+						    <li><a href="#"><spna class="glyphicon glyphicon-plus"></spna> Add</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="panel-body" >
+				<script type="text/ng-template" id="nodes_renderer.html">
+					<div ui-tree-handle>
+						<a class="btn btn-xs" data-nodrag ng-click="toggle(this)" ng-show="node.children.length > 0"><span class="glyphicon" ng-class="{'glyphicon-triangle-right': collapsed, 'glyphicon-triangle-bottom': !collapsed}"></span></a>
+						<span class="child-node fa fa-circle" ng-show="node.children.length <= 0"></span>
+						<span ng-click="selectNode(node)">{{node.name}}</span>
+                	</div>
+					<ol ui-tree-nodes="options" ng-model="node.children" ng-class="{hidden: collapsed}">
+						<li ng-repeat="node in node.children" ui-tree-node ng-include="'nodes_renderer.html'" collapsed="true" >
+                  		</li>
+                	</ol>
+				</script>
+				<div ui-tree data-drag-enabled="false">
+					<ol ui-tree-nodes="" ng-model="treedata" id="tree-root">
+				    	<li ng-repeat="node in treedata" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+				  	</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-md-8">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<strong>Employee</strong>
+				<div class="pull-right">
+					<div class="btn-group">
+						<a href="" class="btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span></a>
+						<ul class="dropdown-menu wehr-font" role="menu">
+							<li><a href="" ng-click="open()"><spna class="glyphicon glyphicon-plus"></spna> Add</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="panel-body">
+				<div id="testGrid" ui-grid="gridOptions" ui-grid-pagination class="grid" ui-grid-auto-resize></div>
+			</div>
+		</div>
+	</div>
+</div>
